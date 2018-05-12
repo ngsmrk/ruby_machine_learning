@@ -10,6 +10,11 @@ model = Liblinear.train(
 # predict
 (-2..2).step(0.1).each do | i |
   rounded = i.round(1)
-  p rounded
-  puts "Prediction: #{Liblinear.predict(model, [rounded, rounded])}"
+  input = [rounded, rounded]
+  puts "Input #{input}"
+  puts "Prediction: #{Liblinear.predict(model, input)}"
+
+# get prediction probablities
+  probs = Liblinear.predict_probabilities(model, input)
+  puts "Probabilities: #{probs.sort}"
 end
